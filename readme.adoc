@@ -43,7 +43,7 @@ sub MAIN
 === Configuration
 Configuration is done using https://github.com/scriptkitties/p6-Config[Config].
 
-My preferred way of documentation is with `toml` files, so that's what I'll use
+My preferred way of configuration is with `toml` files, so that's what I'll use
 here to layout the configuration options. If you want to use another style,
 adapt as necesary and make sure there's a parser available and installed to use
 with `Config`.
