@@ -1,5 +1,5 @@
 = IRC::Client::Plugin::Github
-:toc:
+:toc: preamble
 
 A plugin for Github functionality in IRC::Client projects.
 
