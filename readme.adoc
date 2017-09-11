@@ -1,7 +1,7 @@
 = IRC::Client::Plugin::Github
-A plugin for Github functionality in IRC::Client projects.
-
 :toc:
+
+A plugin for Github functionality in IRC::Client projects.
 
 == Features
 This module is currently only handling Github notifications through the webhook
