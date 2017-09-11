@@ -8,7 +8,7 @@ use IRC::Client;
 use JSON::Fast;
 
 sub IRC::Client::Plugin::Github::WebhookEvents::Push (
-	IRC::Client :$bot,
+	IRC::Client :$irc,
 	Config :$config,
 	Bailador::Request :$request
 ) is export {
@@ -25,7 +25,7 @@ sub IRC::Client::Plugin::Github::WebhookEvents::Push (
 		$commitString ~= "s";
 	}
 
-	$bot.irc.send(
+	$irc.send(
 		:where("#scriptkitties")
 		:text("$user pushed $commits new $commitString to {$repo}{$branch} ($old..$new)")
 		:notice

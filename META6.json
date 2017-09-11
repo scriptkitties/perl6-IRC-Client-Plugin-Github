@@ -11,7 +11,8 @@
         "IRC::Client"
     ],
     "provides": {
-        "IRC::Client::Plugin::Github": "lib/IRC/Client/Plugin/Github.pm6"
+        "IRC::Client::Plugin::Github": "lib/IRC/Client/Plugin/Github.pm6",
+        "IRC::Client::Plugin::Github::WebhookEvents::Push": "lib/IRC/Client/Plugin/Github/WebhookEvents.pm6"
     },
     "authors": [
         "Patrick Spek <p.spek@tyil.work>"
