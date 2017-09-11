@@ -1,0 +1,47 @@
+= IRC::Client::Plugin::Github
+A plugin for Github functionality in IRC::Client projects.
+
+:toc:
+
+== Features
+This module is currently only handling Github notifications through the webhook
+system.
+
+=== Notifications through Github webhooks
+Using https://github.com/Bailador/Bailador[Bailador] as webserver, the plugin
+can act upon Github webhook calls. This means immediate notifications whenever
+something happens on a configured repository.
+
+== Usage
+
+Install the module through https://github.com/ugexe/zef[zef]:
+
+----
+zef install IRC::Client::Plugin::Github
+----
+
+Sample setup for an `IRC::Client` project using `IRC::Client::Plugin::Github`:
+
+[source,perl6]
+----
+use Config;
+use IRC::Client;
+
+sub MAIN
+{
+	my Config $config = Config.new;
+
+	.run with IRC::Client.new(
+		:nick<shithub>,
+		:plugins(
+			IRC::Client::Plugin::Github.new(config => $config)
+		)
+	);
+}
+----
+
+=== Configuration
+Configuration is done using https://github.com/scriptkitties/p6-Config[Config].
+
+== License
+This sourcecode is distributed under the GPLv3 license.
