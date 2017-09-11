@@ -16,10 +16,19 @@ sub IRC::Client::Plugin::Github::WebhookEvents::Push (
 	my Str $repository = %body<repository><full_name>;
 	my Str $config-key = "github.webhook.repos.{$repository.subst("/", "-")}";
 	my %repo-config = $config.get($config-key, {});
+	my @channels = %repo-config<channels> || $config.get("github.webhook.channels", []).unique;
 
-	if (!%repo-config) {
-		if ($config.get("debug", False)) {
-			say "No configuration found for $repository ($config-key)";
+	if (@channels.elems lt 1) {
+		if ($config("debug", False)) {
+			say "No channels configured for $repository ($config-key)";
+		}
+
+		return "";
+	}
+
+	if (!%repo-config && !$config.get("github.webhook.allow-unknown", False)) {
+		if ($config("debug", False)) {
+			say "No repository configuration for $repository ($config-key)";
 		}
 
 		return "";
@@ -36,11 +45,13 @@ sub IRC::Client::Plugin::Github::WebhookEvents::Push (
 		$commitString ~= "s";
 	}
 
-	for %repo-config<channels>.unique {
+	my Str $message = "$user pushed $commits new $commitString to {$repository}{$branch} ($old..$new)";
+
+	for @channels {
 		$irc.send(
 			:where($_)
-			:text("$user pushed $commits new $commitString to {$repository}{$branch} ($old..$new)")
-			:notice
+			:text($message)
+			:notice($config.get("github.webhooks.message-style", "") eq "notice")
 		);
 	}
 
