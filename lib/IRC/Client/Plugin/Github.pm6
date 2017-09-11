@@ -2,6 +2,7 @@
 
 use v6.c;
 
+use Bailador;
 use Config;
 use IRC::Client;
 
@@ -19,7 +20,7 @@ class IRC::Client::Plugin::Github
 
 				require ::($module);
 
-				::($module).handle(
+				::($module)(
 					bot => $,
 					config => $!config,
 					request => request

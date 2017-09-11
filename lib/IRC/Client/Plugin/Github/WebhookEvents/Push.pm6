@@ -7,9 +7,7 @@ use Config;
 use IRC::Client;
 use JSON::Fast;
 
-unit module IRC::Client::Plugin::Github::WebhookEvents::Push;
-
-sub handle(
+sub IRC::Client::Plugin::Github::WebhookEvents::Push (
 	IRC::Client :$bot,
 	Config :$config,
 	Bailador::Request :$request
