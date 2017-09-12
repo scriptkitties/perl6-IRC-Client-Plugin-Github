@@ -54,7 +54,7 @@ class IRC::Client::Plugin::Github does IRC::Client::Plugin
 					$.irc.send(
 						:where($_)
 						:text($message)
-						:notice($!config.get("github.webhooks.message-style", "") eq "notice")
+						:notice($!config.get("github.webhook.message-style", "") eq "notice")
 					);
 				}
 
