@@ -1,7 +1,7 @@
 {
     "perl": "6",
     "name": "IRC::Client::Plugin::Github",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "auth": "github:scriptkitties",
     "description": "A plugin to provide Github functionality to IRC::Client projects",
     "license": "GPL-3.0",
