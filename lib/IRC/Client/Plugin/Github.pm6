@@ -36,7 +36,7 @@ class IRC::Client::Plugin::Github does IRC::Client::Plugin
 				my Str @channels = $!config.get($repo-config-key) || $!config.get("github.webhook.channels", []).unique;
 
 				if (@channels.elems lt 1) {
-					if ($!config("debug", False)) {
+					if ($!config.get("debug", False)) {
 						say "No channels configured for {%json<repository><full_name>} ($repo-config-key)";
 					}
 
