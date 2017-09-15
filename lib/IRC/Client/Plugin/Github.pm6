@@ -6,6 +6,7 @@ use Bailador;
 use Config;
 use IRC::Client;
 use IRC::Client::Plugin::Github::WebhookEvents::Issues;
+use IRC::Client::Plugin::Github::WebhookEvents::PullRequest;
 use IRC::Client::Plugin::Github::WebhookEvents::Push;
 use JSON::Fast;
 
@@ -18,7 +19,7 @@ class IRC::Client::Plugin::Github does IRC::Client::Plugin
 		start {
 			# Set up the web hook for Github notification POSTs
 			post "/" => sub {
-				my Str $event = request.headers<X_GITHUB_EVENT>.wordcase;
+				my Str $event = request.headers<X_GITHUB_EVENT>.subst("_", " ").wordcase().subst(" ", "");
 				my Str $module = "IRC::Client::Plugin::Github::WebhookEvents::$event";
 
 				if (::{"&{$module}"} ~~ Nil) {
