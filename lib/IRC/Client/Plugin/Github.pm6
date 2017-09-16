@@ -5,6 +5,7 @@ use v6.c;
 use Bailador;
 use Config;
 use IRC::Client;
+use IRC::Client::Plugin::Github::WebhookEvents::IssueComment;
 use IRC::Client::Plugin::Github::WebhookEvents::Issues;
 use IRC::Client::Plugin::Github::WebhookEvents::PullRequest;
 use IRC::Client::Plugin::Github::WebhookEvents::Push;
