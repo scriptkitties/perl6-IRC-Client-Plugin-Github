@@ -33,6 +33,15 @@ class IRC::Client::Plugin::Github does IRC::Client::Plugin
 
 				my %json = from-json(request.body);
 
+				# Check signature
+				if ($!config.has("github.webhook.secret") && request.headers<X_HUB_SIGNATURE>:exists) {
+					my Str $hmac = "sha1=" ~ hmac-hex($!config.get("github.webhook.secret"), request.body, &sha1);
+
+					if ($hmac ne request.headers<X_HUB_SIGNATURE>) {
+						return "";
+					}
+				}
+
 				# Make sure there are channels configured to notify
 				my Str $repo-config-key = "github.webhook.repos.{%json<repository><full_name>.subst("/", "-")}.channels";
 				my Str @channels = $!config.get($repo-config-key) || $!config.get("github.webhook.channels", []).unique;
