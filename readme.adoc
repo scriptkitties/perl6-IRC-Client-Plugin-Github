@@ -71,6 +71,11 @@ message-style = "privmsg"
 # repository's configuration key, this array will be used instead.
 channels = ["#scriptkitties"]
 
+# A secret shared between the bot and the Github webhook. If set, HMAC
+# verification will be employed. Messages failing this verification will be
+# dropped.
+secret = ""
+
 # If set to true, it will notify for every repository that POSTs a payload to
 # the Bailador instance. Note this could be abused to spam through the bot.
 # When false, every repository should be properly defined if you want to see
