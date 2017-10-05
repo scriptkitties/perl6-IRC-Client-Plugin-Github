@@ -8,6 +8,8 @@
     "depends": [
         "Bailador",
         "Config",
+        "Digest::HMAC",
+        "Digest::SHA",
         "IRC::Client"
     ],
     "provides": {
