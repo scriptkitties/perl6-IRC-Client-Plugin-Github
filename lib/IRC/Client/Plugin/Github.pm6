@@ -4,6 +4,8 @@ use v6.c;
 
 use Bailador;
 use Config;
+use Digest::HMAC;
+use Digest::SHA;
 use IRC::Client;
 use IRC::Client::Plugin::Github::WebhookEvents::IssueComment;
 use IRC::Client::Plugin::Github::WebhookEvents::Issues;
